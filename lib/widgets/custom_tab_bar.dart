@@ -17,12 +17,16 @@ class _CustomTabBarState extends State<CustomTabBar> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),),
-              child:TabBar(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: TabBar(
                 tabs: [
-
-                  Tab(child: Text('For you'),),
-                  Tab(child: Text('Following'),),
+                  Tab(
+                    child: Text('For you'),
+                  ),
+                  Tab(
+                    child: Text('Following'),
+                  ),
                 ],
               ),
             )

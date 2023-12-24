@@ -6,7 +6,8 @@ class MessagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Messages')),
-    );;
+      appBar: AppBar(title: const Text('Messages')),
+    );
+    ;
   }
 }
