@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter_clone/constants/constants.dart';
 import 'package:twitter_clone/controllers/theme_controller.dart';
 import 'package:twitter_clone/screens/settings_page.dart';
 import 'package:twitter_clone/widgets/custom_drawer.dart';
@@ -13,7 +14,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Obx(
-              () => Text(themeController.currentTheme.value == ThemeMode.dark
+              () => Text(
+                  // style: TextStyle(color: ),
+                  themeController.currentTheme.value == ThemeMode.dark
               ? "X"
               : "X"),
         ),

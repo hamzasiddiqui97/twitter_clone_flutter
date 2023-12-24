@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomTheme {
-  static const lightThemeFont = "ComicNeue", darkThemeFont = "Poppins";
+  static const lightThemeFont = "ComicNeue", darkThemeFont = "ComicNeue";
 
   // light theme
   static final lightTheme = ThemeData(
