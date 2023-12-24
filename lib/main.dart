@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:twitter_clone/constants/constants.dart';
-import 'package:twitter_clone/controllers/theme_controller.dart';
 import 'package:twitter_clone/screens/home_page.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       darkTheme: CustomTheme.darkTheme,
       themeMode: ThemeMode.system,
 
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
 
 
