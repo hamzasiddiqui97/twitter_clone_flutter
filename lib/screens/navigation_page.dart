@@ -8,49 +8,103 @@ import 'package:twitter_clone/screens/messages_page.dart';
 import 'package:twitter_clone/screens/notifications_page.dart';
 import 'package:twitter_clone/screens/search_page.dart';
 import 'package:twitter_clone/screens/settings_page.dart';
-import 'package:twitter_clone/widgets/custom_bottom_nav_bar.dart';
 import 'package:twitter_clone/widgets/custom_drawer.dart';
 import 'package:get/get.dart';
 
-class NavigationBottomApp extends StatefulWidget {
-  const NavigationBottomApp({super.key});
+class NavigationBottomApp extends StatelessWidget {
+  NavigationBottomApp({super.key});
 
-  @override
-  State<NavigationBottomApp> createState() => _NavigationBottomAppState();
-}
+  final BottomNavIndexController bottomNavIndexController =
+      Get.put(BottomNavIndexController(), permanent: false);
 
-class _NavigationBottomAppState extends State<NavigationBottomApp> {
-  int pageIndex = 0;
+  final TextStyle unselectedLabelStyle = TextStyle(
+      color: Colors.white.withOpacity(0.5),
+      fontWeight: FontWeight.w500,
+      fontSize: 12);
 
-  final pages = [
-    const MyHomePage(),
-    const SearchPage(),
-    const NotificationsPage(),
-    const CommunitiesPage(),
-    const MessagesPage(),
-  ];
+  final TextStyle selectedLabelStyle = const TextStyle(
+      color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+
+  buildBottomNavigationMenu(context, bottomNavIndexController) {
+    return Obx(() => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        child: SizedBox(
+          height: 54,
+          child: BottomNavigationBar(
+            showUnselectedLabels: true,
+            showSelectedLabels: true,
+            onTap: bottomNavIndexController.updatePageIndex,
+            currentIndex: bottomNavIndexController.currentIndex.value,
+            backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+            unselectedItemColor: Colors.white.withOpacity(0.5),
+            selectedItemColor: Colors.white,
+            unselectedLabelStyle: unselectedLabelStyle,
+            selectedLabelStyle: selectedLabelStyle,
+            items: [
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: const Icon(
+                    Icons.home,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Home',
+                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: const Icon(
+                    Icons.search,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Explore',
+                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: const Icon(
+                    Icons.location_history,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Places',
+                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: const Icon(
+                    Icons.settings,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Settings',
+                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+            ],
+          ),
+        )));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Obx(
-          () => Text(
-              themeController.currentTheme.value == ThemeMode.dark ? "X" : "X"),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(() => const SettingsPage());
-            },
-            icon: const Icon(Icons.settings),
-          ),
+      body: IndexedStack(
+        index: bottomNavIndexController.currentIndex.value,
+        children: const [
+          MyHomePage(),
+          SearchPage(),
+          NotificationsPage(),
+          CommunitiesPage(),
+          MessagesPage(),
         ],
       ),
-      drawer: const CustomAppDrawer(),
-      body: pages[pageIndex],
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar:
+          buildBottomNavigationMenu(context, bottomNavIndexController),
     );
   }
 }
