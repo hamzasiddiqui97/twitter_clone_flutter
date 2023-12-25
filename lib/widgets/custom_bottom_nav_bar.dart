@@ -31,6 +31,16 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onPressed: () {},
               icon: const Icon(Icons.people, semanticLabel: 'communities'),
             ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications, semanticLabel: 'notification'),
+            ),
+
+            
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.mail_outline, semanticLabel: 'messages'),
+            ),
           ],
         ),
       ),
