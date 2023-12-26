@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:twitter_clone/controllers/bottom_nav_controller.dart';
 import 'package:twitter_clone/controllers/theme_controller.dart';
-import 'package:twitter_clone/screens/communities_page.dart';
-import 'package:twitter_clone/screens/messages_page.dart';
-import 'package:twitter_clone/screens/notifications_page.dart';
-import 'package:twitter_clone/screens/search_page.dart';
 import 'package:twitter_clone/screens/settings_page.dart';
 import 'package:twitter_clone/widgets/custom_drawer.dart';
 import 'package:get/get.dart';
@@ -32,6 +26,10 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
       drawer: const CustomAppDrawer(),
+      body: Container(
+        color: Colors.amberAccent,
+        height: 600,
+      ),
     );
   }
 }

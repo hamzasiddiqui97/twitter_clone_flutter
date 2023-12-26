@@ -6,14 +6,4 @@ class BottomNavIndexController extends GetxController {
   void updatePageIndex(int index) {
     currentIndex.value = index;
   }
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

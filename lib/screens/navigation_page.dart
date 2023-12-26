@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:twitter_clone/controllers/bottom_nav_controller.dart';
-import 'package:twitter_clone/controllers/theme_controller.dart';
 import 'package:twitter_clone/screens/communities_page.dart';
 import 'package:twitter_clone/screens/home_page.dart';
 import 'package:twitter_clone/screens/messages_page.dart';
 import 'package:twitter_clone/screens/notifications_page.dart';
 import 'package:twitter_clone/screens/search_page.dart';
-import 'package:twitter_clone/screens/settings_page.dart';
-import 'package:twitter_clone/widgets/custom_drawer.dart';
 import 'package:get/get.dart';
+import 'package:twitter_clone/widgets/custom_drawer.dart';
 
 class NavigationBottomApp extends StatelessWidget {
   NavigationBottomApp({super.key});
@@ -27,63 +24,60 @@ class NavigationBottomApp extends StatelessWidget {
 
   buildBottomNavigationMenu(context, bottomNavIndexController) {
     return Obx(() => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 2.0),
         child: SizedBox(
           height: 54,
           child: BottomNavigationBar(
-            showUnselectedLabels: true,
-            showSelectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
             onTap: bottomNavIndexController.updatePageIndex,
             currentIndex: bottomNavIndexController.currentIndex.value,
-            backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+            backgroundColor: Colors.black,
             unselectedItemColor: Colors.white.withOpacity(0.5),
             selectedItemColor: Colors.white,
             unselectedLabelStyle: unselectedLabelStyle,
             selectedLabelStyle: selectedLabelStyle,
-            items: [
+            items: const [
               BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.home,
-                    size: 20.0,
-                  ),
+                icon: Icon(
+                  Icons.home_filled,
+                  size: 20.0,
                 ),
                 label: 'Home',
-                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+                backgroundColor: Colors.black,
               ),
               BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.search,
-                    size: 20.0,
-                  ),
+                icon: Icon(
+                  Icons.search,
+                  size: 20.0,
                 ),
-                label: 'Explore',
-                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+                label: 'Search',
+                backgroundColor: Colors.black,
               ),
               BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.location_history,
-                    size: 20.0,
-                  ),
+                icon: Icon(
+                  Icons.people,
+                  size: 20.0,
                 ),
-                label: 'Places',
-                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+                label: 'communities',
+                backgroundColor: Colors.black,
               ),
               BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.settings,
-                    size: 20.0,
-                  ),
+                icon: Icon(
+                  Icons.notifications_none_sharp,
+                  size: 20.0,
                 ),
-                label: 'Settings',
-                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
+                label: 'notifications',
+                backgroundColor: Colors.black,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.mail_outline,
+                  size: 20.0,
+                ),
+                label: 'messages',
+                backgroundColor: Colors.black,
               ),
             ],
           ),
@@ -93,16 +87,16 @@ class NavigationBottomApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: bottomNavIndexController.currentIndex.value,
-        children: const [
-          MyHomePage(),
-          SearchPage(),
-          NotificationsPage(),
-          CommunitiesPage(),
-          MessagesPage(),
-        ],
-      ),
+      body: Obx(() => IndexedStack(
+            index: bottomNavIndexController.currentIndex.value,
+            children: const [
+              MyHomePage(),
+              SearchPage(),
+              NotificationsPage(),
+              CommunitiesPage(),
+              MessagesPage(),
+            ],
+          )),
       bottomNavigationBar:
           buildBottomNavigationMenu(context, bottomNavIndexController),
     );
