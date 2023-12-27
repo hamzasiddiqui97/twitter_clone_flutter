@@ -15,29 +15,28 @@ class _CustomTabBarState extends State<CustomTabBar> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 0,
-      animationDuration: const Duration(milliseconds: 3),
-      length: 2,
-      child: Scaffold(
-        body: Column(
-          children: [
+        initialIndex: 0,
+        animationDuration: const Duration(milliseconds: 3),
+        length: 2,
+        child: Scaffold(
+          body: Column(children: [
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child:  TabBar(
+              child: TabBar(
                 physics: const BouncingScrollPhysics(),
                 indicatorColor: Colors.blue,
-
                 tabs: [
                   Tab(
                     child: Obx(() {
                       return Text(
                         'For you',
-                        style: TextStyle(color: themeController.currentTheme.value == ThemeMode.dark
-                        ? CustomTheme.darkThemeColor
-                            : CustomTheme.lightThemeColor,
-
+                        style: TextStyle(
+                          color: themeController.currentTheme.value ==
+                                  ThemeMode.dark
+                              ? CustomTheme.darkThemeColor
+                              : CustomTheme.lightThemeColor,
                         ),
                       );
                     }),
@@ -45,23 +44,20 @@ class _CustomTabBarState extends State<CustomTabBar> {
                   Tab(
                     child: Obx(() {
                       return Text(
-                          'Following',
-                        style: TextStyle(color: themeController.currentTheme.value == ThemeMode.dark
-                            ? CustomTheme.darkThemeColor
-                            : CustomTheme.lightThemeColor,
-
+                        'Following',
+                        style: TextStyle(
+                          color: themeController.currentTheme.value ==
+                                  ThemeMode.dark
+                              ? CustomTheme.darkThemeColor
+                              : CustomTheme.lightThemeColor,
                         ),
-
-
                       );
                     }),
-                  ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          ]),
+        ));
   }
 }

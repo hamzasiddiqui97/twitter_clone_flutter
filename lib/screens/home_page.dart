@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/constants/constants.dart';
 import 'package:twitter_clone/controllers/theme_controller.dart';
 import 'package:twitter_clone/screens/settings_page.dart';
 import 'package:twitter_clone/widgets/custom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:twitter_clone/widgets/custom_tab_bar.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -14,24 +12,25 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Obx(
-              () => Text(
-                  // style: TextStyle(color: ),
-                  themeController.currentTheme.value == ThemeMode.dark
-              ? "X"
-              : "X"),
+          () => Text(
+              // style: TextStyle(color: ),
+              themeController.currentTheme.value == ThemeMode.dark ? "X" : "X"),
         ),
-
-
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: (){
-            Get.to(()=> const SettingsPage());
-          }, icon: const Icon(Icons.settings),),
+            onPressed: () {
+              Get.to(() => const SettingsPage());
+            },
+            icon: const Icon(Icons.settings),
+          ),
         ],
       ),
       drawer: const CustomAppDrawer(),
-      body: const CustomTabBar(),
+      body: Container(
+        color: Colors.amberAccent,
+        height: 600,
+      ),
     );
   }
 }
